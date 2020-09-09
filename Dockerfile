@@ -6,7 +6,7 @@ Run		apt update && apt install -y nginx
 Copy	src/nginx-conf /tmp/
 # Configure Nginx
 Run		mkdir /var/www/localhost/
-Run		cp /temp/nginx-conf etc/nginx/sites-available/localhost
+Run		cp /tmp/nginx-conf etc/nginx/sites-available/localhost
 Run		ln -s /etc/nginx/sites-available/localhost etc/nginx/sites-enabled
 # Install MySQL database system
 Run		apt install -y mariadb-server
@@ -23,7 +23,7 @@ Run		wget https://wordpress.org/latest.tar.gz
 Run		tar -xvzf latest.tar.gz && mv /wordpress/* /var/www/localhost/
 Run		rmdir /wordpress/
 # Create and Set Wordpress database
-# Set Ownership
+# Set ownership
 Run		chown -R www-data:www-data /var/www/* &&\
 		chown -R www-data:www-data /var/www/ &&\
 		chown -R 755 /var/www/*
