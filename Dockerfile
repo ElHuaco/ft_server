@@ -23,7 +23,7 @@ Run		apt install -y wget
 Run		wget https://wordpress.org/latest.tar.gz
 Run		tar -xvzf latest.tar.gz && mv /wordpress/* /var/www/localhost/
 #Copy	srcs/wp-config.php /var/www/localhost/wp-config.php
-Run		rmdir /wordpress/
+Run		rmdir /wordpress/ && rm latest.tar.gz
 Copy	srcs/wordpress.sql /root/
 ## Create and Set Wordpress database
 Run		service mysql start &&\
@@ -34,9 +34,8 @@ Run		service mysql start &&\
 		echo "FLUSH PRIVILEGES;" | mysql -u root &&\
 		mysql wordpress -u root --password= < /root/wordpress.sql
 ## Set ownership and privileges
-Run		chown -R www-data:www-data /var/www/localhost/* &&\
-		chown -R www-data:www-data /var/www/localhost &&\
-		chmod -R 755 /var/www/localhost/*
+Run		chown -R www-data:www-data /var/www/* &&\
+		chmod -R 755 /var/www/*
 ## Start services and enter shell when run
 Cmd		service mysql start &&\
 		service nginx start &&\
