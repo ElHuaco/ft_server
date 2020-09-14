@@ -1,9 +1,9 @@
 #!/bin/bash
 
 if [ "$1" = "on" ] ;
-	then sed -i '' -e '6d;$d' /etc/nginx/sites-available/localhost/nginx-conf &&\
-		echo "\nautoindex on;\nindex random;\n}" >> \
-		/etc/nginx/sites-available/localhost/nginx-conf ;
+	then sed -i '6d;$d' /etc/nginx/sites-available/localhost &&\
+		echo -e "\nautoindex on;\nindex random;\n}" >> \
+		/etc/nginx/sites-available/localhost ;
 fi
 chown -R www-data:www-data /var/www/* ;
 chmod 755 -R /var/www/* ;
