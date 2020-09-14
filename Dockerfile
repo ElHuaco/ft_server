@@ -34,10 +34,7 @@ Run		service mysql start &&\
 		echo "update mysql.user set plugin = 'mysql_native_password' where user='admin';" | mysql -u root &&\
 		echo "FLUSH PRIVILEGES;" | mysql -u root &&\
 		mysql wordpress -u root --password= < /root/wordpress.sql
-## Set privileges
-#Run		chown -R www-data:www-data /var/www/*
-#		chmod 755 -R /var/www/*
 ## Start services and enter shell when run.
-## Option to show autoindexes. With docker run -e "AUTOINDEX=on"
+## Option to show autoindexes: with docker run -e "AUTOINDEX=on" image.
 Copy	srcs/service_start.sh /tmp/
 Cmd		export AUTOINDEX && bash /tmp/service_start.sh ${AUTOINDEX} && bash
