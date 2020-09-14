@@ -1,2 +1,4 @@
 https://wordpress.org/support/article/how-to-install-wordpress/
 https://wordpress.org/support/topic/wordpress-files-there-but-login-asks-for-wordpress-installation/
+-SSL
+-Autoindex
