@@ -18,21 +18,22 @@ Copy	srcs/phpmyadmin /tmp/phpmyadmin
 ## Configure phpMyAdmin
 Run		cp -R /tmp/phpmyadmin/ var/www/localhost/
 Run		chmod 660 /var/www/localhost/phpmyadmin/config.inc.php
+## Install Obtain SSL certificates from Let's Encrypt
 ## Install Wordpress service
 Run		apt install -y wget
 Run		wget https://wordpress.org/latest.tar.gz
 Run		tar -xvzf latest.tar.gz && mv /wordpress/* /var/www/localhost/
-#Copy	srcs/wp-config.php /var/www/localhost/wp-config.php
+Copy	srcs/wp-config.php /var/www/localhost/wp-config.php
 Run		rmdir /wordpress/ && rm latest.tar.gz
-#Copy	srcs/wordpress.sql /root/
+Copy	srcs/wordpress.sql /root/
 ## Create and Set Wordpress database
 Run		service mysql start &&\
 		echo "CREATE USER 'admin'@'localhost';" | mysql -u root &&\
 		echo "CREATE DATABASE wordpress;" | mysql -u root &&\
 		echo "GRANT ALL ON wordpress.* TO 'admin'@'localhost' IDENTIFIED BY '123' WITH GRANT OPTION;" | mysql -u root &&\
-#		echo "update mysql.user set plugin = 'mysql_native_password' where user='admin';" | mysql -u root &&\
-		echo "FLUSH PRIVILEGES;" | mysql -u root
-#		mysql wordpress -u root --password= < /root/wordpress.sql
+		echo "update mysql.user set plugin = 'mysql_native_password' where user='admin';" | mysql -u root &&\
+		echo "FLUSH PRIVILEGES;" | mysql -u root &&\
+		mysql wordpress -u root --password= < /root/wordpress.sql
 ## Set ownership and privileges
 Run		chown -R www-data:www-data /var/www/* &&\
 		chmod -R 755 /var/www/*
