@@ -19,7 +19,10 @@ Run		apt install -y php-json php-mbstring
 Copy	srcs/phpmyadmin /tmp/phpmyadmin
 Run		cp -R /tmp/phpmyadmin/ var/www/localhost/
 Run		chmod 660 /var/www/localhost/phpmyadmin/config.inc.php
-## Install Obtain SSL certificates from Let's Encrypt
+## Install SSL
+Run		apt install -y openssl
+## Generate SSL Certificate and Key
+Run		echo 'SP\nMadrid\Madrid\n42\n.\n.\n.\n' | openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt
 ## Install Wordpress service. Copy preconfigured wordpress site.
 Run		apt install -y wget
 Run		wget https://wordpress.org/latest.tar.gz
