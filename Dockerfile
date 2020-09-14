@@ -1,7 +1,7 @@
 ## Using OS debian buster
 From	debian:buster
 Label	maintanier="Alejandro León <aleon-ca@student.42madrid.com>"
-ENV		AUTOINDEX=off
+Env		AUTOINDEX=off
 ## Install Nginx web server
 Run		apt update && apt install -y nginx
 ## Configure Nginx
